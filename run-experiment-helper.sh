@@ -1,18 +1,16 @@
 #!/bin/bash
 
-PROTOS=("tcp" "udp")
-PROTOS=("udp")
+PROTOS=("tcp" "udp") # PROTOCOLS
 DEV_INIT_MODES=("0" "1")
-ITERATIONS=10
-DURATION=75
-INTERVAL=0.5
+ITERATIONS=10 # Swap Iterations
+DURATION=75 # iPerf duration
+INTERVAL=0.5 # iPerf export interval
 
 LEN_DEV_INIT_MODES=${#DEV_INIT_MODES[*]}
 LEN_PROTOS=${#PROTOS[*]}
-EXPERIMENT_ITERATIONS=10
-SWITCH_WARMUP_DELAY=15
-TIF_APPLY_TIME=60
-TIME_IPERF_RUN_CHECK=5 # Waiting time until iPerf should be up and running.
+SWITCH_WARMUP_DELAY=15 # Estimated switch warmup/initialization delay in our setup
+TIF_APPLY_TIME=60 # Estimated TIF deployment time in our setup
+TIME_IPERF_RUN_CHECK=5 # Waiting time until iPerf is running some time before starting the submission process
 
 echo "Starting Experiments with $ITERATIONS iterations and an additational duration of $DURATION seconds and export interval of $INTERVAL seconds."
 

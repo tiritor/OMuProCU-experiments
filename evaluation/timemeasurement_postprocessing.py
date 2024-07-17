@@ -6,9 +6,6 @@ from matplotlib import pyplot as plt
 import pandas as pd
 
 class TimeScales(Enum):
-    """
-    docstring
-    """
     SECONDS = 10 ** 0 
     MILLISECONDS = 10 ** 3
     MICROSECONDS = 10 ** 6
@@ -16,7 +13,7 @@ class TimeScales(Enum):
 
 def convert_timescale(data, current_timescale : int, new_timescale : int):
     """
-    Convert data from a given timescale to another one. 
+    docstring
     """
     timescale = current_timescale / new_timescale if current_timescale < new_timescale else new_timescale / current_timescale
     return data * timescale
@@ -38,7 +35,6 @@ orchestrator_timemeasurement_timescale = TimeScales.NANOSECONDS
 evaluation_timescale = TimeScales.MILLISECONDS
 
 orchestrator_measured_steps = [
-    # "deploymentTime",
     "validationTime",
     "scheduledTime",
     "processingTime",
@@ -75,7 +71,6 @@ orchestrator_measured_steps_colors = {
     "processingTime": "#AAAAAA",
     "nosPreprocessTime": "#10b541",
     "nosUpdateTime": "#10b541",
-    # "inPreprocessTime": "#0000FF",
     "inPreprocessTime": "#fcae28",
     "inCompileTime": "#0000FF",
     "inUpdateTime": "#fcae28",
@@ -91,6 +86,18 @@ unnecessary_steps = [
     "inUpdateTime",
     "nosPreprocessTime",
 ]
+
+
+# print(df)
+# for index, row in df.iterrows():
+#     ax = plt.subplot(2, 1, index + 1)
+#     plt.title(row["tenantId"])
+#     plt.barh(orchestrator_measured_steps, [row[col] for col in orchestrator_measured_steps], )
+#     # ax.set_xticklabels(labels=orchestrator_measured_steps, rotation=90)
+#     plt.xticks(rotation=45)
+# plt.suptitle("Orchestrator Step Timemeasurements")
+# plt.tight_layout()
+# plt.savefig("test.pdf")
 
 collection = {}
 
@@ -136,6 +143,8 @@ for mode in dev_init_modes:
             copied_orchestrator_measured_steps.remove("processingTime")
             plt.barh(copied_orchestrator_measured_steps, [copied_avg_values[col] for col in copied_orchestrator_measured_steps], color=[orchestrator_measured_steps_colors[col] for col in  copied_orchestrator_measured_steps])
             plt.xticks(rotation=45)
+            # plt.suptitle("Orchestrator Step Timemeasurements (avg)")
+            # plt.title("Without Processing Time")
             plt.tight_layout()
             plt.savefig("test-{}-wo-processingTime.pdf".format(action))
             plt.close()
@@ -151,7 +160,7 @@ for mode in dev_init_modes:
             plt.savefig("test-{}-wo-pro-incompileTime.pdf".format(action))
             plt.close()
 
-            # Remove scheduledTime (since it depends on the used infrastructure and its philosophy)
+            # Remove scheduledTime (since it is the next biggest delay)
             copied_avg_values.pop("scheduledTime")
             copied_orchestrator_measured_steps.remove("scheduledTime")
             copied_avg_values["tifUpdateTime"] += copied_avg_values["tifPostUpdateTime"]
@@ -172,7 +181,9 @@ for mode in dev_init_modes:
             fig.set_figheight(3)
             ax.set_xticks(orchestrator_measured_steps_names)
             ax.set_ylabel("Time in ms", rotation=90)
-
+            # ax.set_xlabel("Orchestrator step") # not neccessary
+            # plt.suptitle("Orchestrator Step Timemeasurements (avg)")
+            # plt.title("Without Processing, inCompile and scheduled Time")
             fig.set_tight_layout("rect")
             fig.savefig("test-{}-{}-{}-influenceable-steps-minimized.pdf".format(action, mode, protocol))
             plt.close()

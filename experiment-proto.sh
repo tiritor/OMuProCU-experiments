@@ -60,6 +60,8 @@ tmux send "ssh $SWITCH_ADDRESS -t './init-switch.sh'" ENTER
 tmux select-layout even-vertical
 tmux select-window -t "$TMUX_MAIN_WINDOW_NAME"
 
+### LICENSED PART END ###
+
 echo "Waiting some time ($SWITCH_WARMUP_DELAY secs) until switch is ready."
 sleep $SWITCH_WARMUP_DELAY
 

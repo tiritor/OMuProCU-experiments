@@ -36,12 +36,11 @@ TIL: # Tenant Isolation Logic
     rules:
       - {}
   runtimeRules: # Rules for tables which are deployed in the tenant in-network code 
-    - mode: 'table_add'
-      table: 'Test2Ingress.test_table' # table name with start point in its p4 code!
+    - table: 'Test2Ingress.test_table' # table name with start point in its p4 code!
       actionName: 'Test2Ingress.CheckFeature' # action name with start point in its p4 code!
       match: "{'meta.feature_meta.node_id': 0, 'meta.feature_meta.prevFeature': 0, 'meta.feature_meta.isTrue': 1}" # match with start point in its p4 code! 
       actionParams: "{'node_id': 1, 'f_inout': 1, 'threshold': 64}" # action params with start point in its p4 code!
-INC: # in-network code of tenant
+INC: # in-network code of tenant 
   p4Code: |
     /*************************************************************************
     ************************* C O N T R O L **********************************

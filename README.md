@@ -3,7 +3,7 @@
 
 This repository contains experiments used for the evaluation of the orchestrator pipeline step duration.
 
-It is part of the paper ```Low Impact Tenant Code Updates on Multi-tenant Programmable Switches```.
+It is part of the papers [```Low Impact Tenant Code Updates on Multi-tenant Programmable Switches```]() and ```Resilient Multi-Tenant Code Updates for Adaptive Network State Changes```.
 
 ## Disclaimer
 
@@ -35,7 +35,9 @@ pip3 install ../OMuProCU-utils
 pip3 install -r requirements.txt # primarly required for the postprocessing.
 ```
 
-### Starting the experiment
+### Experiment for the paper [`Low Impact Tenant Code Updates on Multi-tenant Programmable Switches`](https://ieeexplore.ieee.org/abstract/document/10327866)
+
+#### Starting the experiment
 
 To start the experience after implementing the missing steps again, you can enter
 
@@ -44,10 +46,41 @@ To start the experience after implementing the missing steps again, you can ente
 ```
 which will start a tmux session where experiment is done.
 
-## Evaluation
+#### Evaluation
 
 After a successful experiment run, the following command can be executed in the virtual environment to generate plots and evaluation files:
 
 ```
-python3 timemeasurement_postprocessing.py
+python3 evaluation/timemeasurement_postprocessing.py
+```
+
+### Experiment for the paper `Resilient Multi-Tenant Code Updates for Adaptive Network State Changes`
+
+#### Prerequisites
+
+- VXLAN must be configured correctly (```./enable_vxlan_h1_pinger.sh```)
+
+#### Starting the experiment
+
+To start the experiment, the following command must be executed in the virtual environment:
+
+```
+python3 pinger-test.py
+```
+
+or 
+
+```
+pinger-experiment.sh
+```
+
+
+which will do all steps accordingly. 
+
+#### Evaluation
+
+After a successful experiment run, the following command can be executed in the virtual environment which generates plots and evaluation files:
+
+```
+python3 evaluation/ping-results-evaluation.py
 ```
