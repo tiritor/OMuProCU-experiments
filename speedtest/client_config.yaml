@@ -1,0 +1,26 @@
+server_addr: 192.168.42.42:8080 # acc. CNF
+# server_addr: 00.00.00.00:8080 # Private Cloud instance
+# server_addr: 00.00.00.00:8080 # Public (AWS) Cloud instance
+client_addr: 0.0.0.0:8081
+
+## payload_size: 65475 # 65KB, Maximum UDP payload size
+payload_size: 500 # 0.5KB
+packet_count: 1000
+speedtest_duration: 10
+ping_interval: 1
+
+bitrate: 100 # 100 Mbps
+bitrate_scale: M # Mbps
+
+speedtest_mode: "duration_custom_bitrate" # Available modes: "packet_count", "duration", "duration_custom_bitrate" and "ping"
+
+### Experiment Mode ###
+experiment_mode: true
+experiment_count: 10
+experiment_interval: 1
+experiment_servers:
+  - 192.168.42.42:8080 # acc. CNF
+  - 00.00.00.00:8080 # Private Cloud instance
+  - 00.00.00.00:8080 # Public (AWS) Cloud instance
+experiment_payload_sizes:
+  - 500 # 0.5KB

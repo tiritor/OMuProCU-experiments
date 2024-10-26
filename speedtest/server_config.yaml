@@ -1,0 +1,10 @@
+server:
+  address: 0.0.0.0:8080
+  qos_profile: "default" # "default", "jitter", delay", "loss", "duplicate", "reorder"
+qos_profile_config:
+  jitter: 10 # Max Jitter in ms
+  delay: 0 # in ms
+  loss: 10 # in Percentage
+  duplicate : 10 # in Percentage
+  reorder: 10 # in Percentage
+  reorder_delay: 10 # in ms
